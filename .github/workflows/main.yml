@@ -34,9 +34,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Run Tests with Headless Mode
-      run: mvn test jacoco:report
-      env:
-        JAVA_OPTS: "-Djava.awt.headless=true"
+      run: mvn test -Djava.awt.headless=true jacoco:report
 
     - name: Upload coverage report
       uses: actions/upload-artifact@v3
