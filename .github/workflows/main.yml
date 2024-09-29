@@ -20,6 +20,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '20'
+        distribution: 'oracle' 
 
     - name: Cache Maven packages
       uses: actions/cache@v2
@@ -33,12 +34,12 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Run Tests with Headless Mode
-      run: |
-        export JAVA_OPTS="-Djava.awt.headless=true"
-        mvn test jacoco:report
+      run: mvn test jacoco:report
+      env:
+        JAVA_OPTS: "-Djava.awt.headless=true"
 
     - name: Upload coverage report
-      uses: actions/upload-artifact@v3  # Updated to v3
+      uses: actions/upload-artifact@v3
       with:
         name: jacoco-report
         path: target/site/jacoco
