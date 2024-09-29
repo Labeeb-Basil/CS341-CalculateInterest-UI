@@ -32,6 +32,8 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+      env:
+        MAVEN_OPTS: "-Djava.awt.headless=true" 
 
     - name: Run Tests with Headless Mode
       run: mvn test -Djava.awt.headless=true jacoco:report
