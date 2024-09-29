@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.text.Font;
 
 public class App extends Application {
 
@@ -21,10 +22,9 @@ public class App extends Application {
     private TextField loanAmountField;
     private ComboBox loanYearField;
     private ComboBox loanTypeField;
+    private Button submitButton;
 
     private Label resultLabel;
-
-    private String gAvailableYears[];
 
     public static void main(String[] args) {
         launch(args);
@@ -117,14 +117,17 @@ public class App extends Application {
         calculateLoanAmountButton = new ToggleButton("Calculate Loan Amount");
         calculateLoanAmountButton.setToggleGroup(operationToggleGroup);
         calculateLoanAmountButton.getStyleClass().add("toggle-button");
+        calculateLoanAmountButton.setId("calculateLoanAmountButton");
 
         calculateLoanInterestButton = new ToggleButton("Calculate Loan Interest");
         calculateLoanInterestButton.setToggleGroup(operationToggleGroup);
         calculateLoanInterestButton.getStyleClass().add("toggle-button");
+        calculateLoanInterestButton.setId("calculateLoanInterestButton"); // Set ID
 
         loanBalanceButton = new ToggleButton("Loan Balance");
         loanBalanceButton.setToggleGroup(operationToggleGroup);
         loanBalanceButton.getStyleClass().add("toggle-button");
+        loanBalanceButton.setId("loanBalanceButton"); // Set ID
 
         toggleButtons.getChildren().addAll(calculateLoanAmountButton, calculateLoanInterestButton, loanBalanceButton);
 
@@ -133,13 +136,13 @@ public class App extends Application {
                 operationToggleGroup.selectToggle(oldToggle);
             } else {
                 if (newToggle == loanBalanceButton) {
-                    setInputFieldsDisabled(3);
+                    setInputFieldsDisabled(true);
                     operationTile.setText("Loan Balance");
                 } else if (newToggle == calculateLoanAmountButton) {
-                    setInputFieldsDisabled(1);
+                    setInputFieldsDisabled(false);
                     operationTile.setText("Calculate Loan Amount");
                 } else if (newToggle == calculateLoanInterestButton) {
-                    setInputFieldsDisabled(2);
+                    setInputFieldsDisabled(false);
                     operationTile.setText("Calculate Loan Interest");
                 }
             }
@@ -161,6 +164,7 @@ public class App extends Application {
         loanTypeField.getItems().addAll("Home", "Property");
         loanTypeField.setDisable(true);
         loanTypeField.setPromptText("Select Loan Type");
+        loanTypeField.setId("loanTypeField");
 
         // Add Loan Type components to VBox
         VBox loanTypeBox = new VBox(loanTypeLabel, loanTypeField);
@@ -173,6 +177,7 @@ public class App extends Application {
         loanAmountField = new TextField();
         loanAmountField.setDisable(true);
         loanAmountField.setPromptText("Enter Loan Amount");
+        loanAmountField.setId("loanAmountField");
 
         // Add Loan Amount components to VBox
         VBox loanAmountBox = new VBox(loanAmountLabel, loanAmountField);
@@ -183,62 +188,52 @@ public class App extends Application {
         Label loanYearLabel = new Label("Year:");
         loanYearLabel.getStyleClass().add("input-label");
         loanYearField = new ComboBox<>();
-        loanYearField.getItems().addAll("1 Year", "2 Years", "3 Years", "5 Years", "10 Years");
+        loanYearField.getItems().addAll(Arrays.asList(generateArray(1, 100)));
         loanYearField.setDisable(true);
         loanYearField.setPromptText("Select Loan Year");
+        loanYearField.setId("loanYearField");
 
         // Add Loan Year components to VBox
         VBox loanYearBox = new VBox(loanYearLabel, loanYearField);
         loanYearBox.setAlignment(Pos.CENTER_LEFT);
         inputBox.getChildren().add(loanYearBox);
 
-        Button submitButton = new Button("Submit");
+        submitButton = new Button("Submit");
         submitButton.getStyleClass().add("toggle-button");
+        submitButton.setId("submitButton");
+        submitButton.setDisable(true);
         submitButton.setOnAction(event -> {
             if (loanBalanceButton.isSelected()) {
-                String[] result = CalcInterest.computeLoanBalance();
+                String[] result = CalculateInterestUI.computeLoanBalance();
                 resultLabel.setText(result[0]);
+                resultLabel.setTextFill(Color.web(result[1]));
+                resultLabel.setId("resultLabel");
                 return;
             }
-            if (validateAmount() && validateFields()) {
+            if (validateFields()) {
                 String loanAmountValue = loanAmountField.getText();
                 String loanTypeValue = (String) loanTypeField.getValue();
                 String loanYearValue = (String) loanYearField.getValue();
 
-                // Process loan type: if "Home" then 1, else 2
                 int loanType = loanTypeValue.equals("Home") ? 1 : 2;
+                double loanAmount = Double.parseDouble(loanAmountValue);
+                int loanYear = Integer.parseInt(loanYearValue.replaceAll("[^\\d]", ""));
 
-                loanYearValue = loanYearValue.replaceAll("[^\\d]", "");
-
-                double loanAmount = 0;
-                try {
-                    loanAmount = Double.parseDouble(loanAmountValue);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid loan amount: " + loanAmountValue);
-                    return;
-                }
+                String[] result;
                 if (calculateLoanAmountButton.isSelected()) {
-                    String[] result = CalcInterest.computeLoanAmountValue(loanAmount, Integer.parseInt(loanYearValue), loanType);
-                    resultLabel.setText(result[0]);
-                    resultLabel.setTextFill(Color.web(result[1]));
-                } else if (calculateLoanInterestButton.isSelected()) {
-                    String[] result = CalcInterest.computeLoanInterestValue(loanAmount, Integer.parseInt(loanYearValue), loanType);
-                    resultLabel.setText(result[0]);
-                    resultLabel.setTextFill(Color.web(result[1]));
+                    result = CalculateInterestUI.computeLoanAmountValue(loanAmount, loanYear, loanType);
+                } else { // calculateLoanInterestButton is selected
+                    result = CalculateInterestUI.computeLoanInterestValue(loanAmount, loanYear, loanType);
                 }
+
+                resultLabel.setText(result[0]);
+                resultLabel.setTextFill(Color.web(result[1]));
+                resultLabel.setFont(new Font(30.0));
+                resultLabel.setId("resultLabel");
             }
 
         });
         inputBox.getChildren().add(submitButton);
-
-        loanTypeField.setOnAction(event -> {
-            if (loanTypeField.getValue() != null) {
-                loanAmountField.setDisable(false);
-            }
-            updateLoanYearField(loanAmountField.getText());
-        });
-
-        loanAmountField.textProperty().addListener((observable, oldValue, newValue) -> updateLoanYearField(newValue));
 
         return inputBox;
     }
@@ -246,83 +241,47 @@ public class App extends Application {
     // container for the results of calculation.
     private VBox createOutputBox() {
         VBox outputBox = new VBox();
-        outputBox.setSpacing(10);
+        outputBox.setSpacing(5);
         outputBox.setAlignment(Pos.TOP_LEFT); // Align to top left
 
         Label outputLabel = new Label("Output:");
-        outputLabel.getStyleClass().add("heading-io");
+        outputLabel.getStyleClass().add("heading-output");
 
         // No need to set Vgrow for outputLabel as it should not grow
         outputBox.getChildren().add(outputLabel);
 
         resultLabel = new Label("Do a calculation");
-        resultLabel.getStyleClass().add("output-label");
-        resultLabel.setTextFill(Color.web("#326569"));
+        resultLabel.getStyleClass().add("result-label");
+        resultLabel.setId("resultLabel");
         outputBox.getChildren().add(resultLabel);
-
-        Button submitButton = new Button("Submit");
-        submitButton.getStyleClass().add("toggle-button");
-        submitButton.setOnAction(event -> resultLabel.setText(""));
 
         return outputBox;
     }
 
     // function that disables/enables the input fields based on selected operation and clears them.
-    private void setInputFieldsDisabled(int option) {
-        boolean disabled = true;
-        if (option < 3) { // disable only year and amount fields
-            loanTypeField.setDisable(!disabled);
-            loanAmountField.setDisable(disabled);
-            loanYearField.setDisable(disabled);
-        } else { // disable all fields
-            loanTypeField.setDisable(disabled);
-            loanAmountField.setDisable(disabled);
-            loanYearField.setDisable(disabled);
-        }
-        if (disabled) { // clear fields
-            loanAmountField.clear();
-            loanYearField.getSelectionModel().clearSelection();
-            loanTypeField.getSelectionModel().clearSelection();
-        }
-    }
+    private void setInputFieldsDisabled(boolean disabled) {
+        loanTypeField.setDisable(disabled);
+        loanAmountField.setDisable(disabled);
+        loanYearField.setDisable(disabled);
+        submitButton.setDisable(false);
 
-    // Function to provide correct year values for dropdown based on type and amount.
-    // Based on requirements.
-    private void updateLoanYearField(String value) {
-        if (value != null && !value.trim().isEmpty()) {
-            try {
-                double loanAmount = Double.parseDouble(loanAmountField.getText());
-                int loanType = loanTypeField.getValue() != null ? (loanTypeField.getValue().equals("Home") ? 1 : 2) : 0;
-
-                loanYearField.setDisable(false);
-                updateLoanYearOptionsBasedOnAmount(loanAmount, loanType); // call the method from the CalcInterest class
-
-            } catch (NumberFormatException e) { // if the amount field does not contain a valid double value
-                loanYearField.getSelectionModel().clearSelection();
-                loanYearField.setPromptText("Select Loan Year");
-                loanYearField.setDisable(true);
-            }
-        } else { // if input field is set to null or empty.
-            loanYearField.getSelectionModel().clearSelection();
-            loanYearField.setPromptText("Select Loan Year");
-            loanYearField.setDisable(true);
-        }
-
+        loanAmountField.clear();
+        loanYearField.getSelectionModel().clearSelection();
+        loanTypeField.getSelectionModel().clearSelection();
     }
 
     // helper function to get loan year values based on input
-    private void updateLoanYearOptionsBasedOnAmount(double loanAmount, int loanType) {
-        String[] availableYears = CalcInterest.availableYearLoan(loanAmount, loanType);
-
-        if (gAvailableYears != null && Arrays.equals(gAvailableYears, availableYears)) {
-            return;
+    public static String[] generateArray(int start, int end) {
+        String[] array = new String[end - start + 1];
+        for (int i = 0; i < array.length; i++) {
+            int value = start + i;
+            if (value == 1) {
+                array[i] = value + " year";
+            } else {
+                array[i] = value + " years";
+            }
         }
-
-        gAvailableYears = Arrays.copyOf(availableYears, availableYears.length);
-
-        loanYearField.getItems().clear();
-        loanYearField.getItems().addAll(Arrays.asList(gAvailableYears));
-        loanYearField.setPromptText("Select Loan Year");
+        return array;
     }
 
     // helper method that validates the free form amount input.
@@ -355,17 +314,19 @@ public class App extends Application {
             showErrorMessage("Select an operation from the top section");
         }
         if (loanType == null) {
-            showErrorMessage("Select an option from the Type options");
+            showErrorMessage("Select a Loan Type from the options");
             return false;
         }
 
         if (loanAmountText.isEmpty()) {
-            showErrorMessage("Fill in the amount field");
+            showErrorMessage("Enter an amount");
+            return false;
+        } else if (!validateAmount()) {
             return false;
         }
 
         if (loanYear == null) {
-            showErrorMessage("Select an option from the Year options");
+            showErrorMessage("Select an Year from the options");
             return false;
         }
 

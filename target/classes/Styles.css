@@ -97,11 +97,6 @@
     -fx-text-fill: #f4f4f4;
 }
 
-.output-label{
-    -fx-font-weight: bold;
-    -fx-font-size: 20px;
-}
-
 .hbox {
     -fx-spacing: 30px;
 }
@@ -130,14 +125,14 @@
     -fx-pref-height: 450px;
 }
 
-.heading-io{
+.heading-output{
     -fx-text-fill: #f4f4f4;
-    -fx-font-size: 25px;
+    -fx-font-size: 21px;
 }
 
 .result-label {
     -fx-text-fill: #66FAEE;
-    -fx-font-size: 18px;
+    -fx-font-size: 20px;
 }
 
 .operation-tile {
@@ -147,3 +142,32 @@
     -fx-padding: 10px;
     -fx-pref-width: 400px;
 }
+
+.thing-scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.thin-scroll-pane .scroll-bar:vertical {
+    -fx-pref-width: 8px; /* Width of the vertical scrollbar */
+}
+
+.thin-scroll-pane .scroll-bar:horizontal {
+    -fx-pref-height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.thin-scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #66FAEE; /* Color of the scrollbar thumb */
+}
+
+.thin-scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: #66FAEE; /* Color of the scrollbar thumb */
+}
+
+.thin-scroll-pane .scroll-bar:vertical .track {
+    -fx-background-color: transparent; /* Track color */
+}
+
+.thin-scroll-pane .scroll-bar:horizontal .track {
+    -fx-background-color: transparent; /* Track color */
+}
+
