@@ -1,0 +1,4 @@
+--patch-module
+com.cs341.a1.calculateinterestui=_
+--add-reads
+com.cs341.a1.calculateinterestui=ALL-UNNAMED

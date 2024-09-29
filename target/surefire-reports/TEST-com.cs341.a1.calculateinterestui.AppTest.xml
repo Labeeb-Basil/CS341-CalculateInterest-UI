@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.cs341.a1.calculateinterestui.AppTest" time="186.17" tests="36" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="20"/>
+    <property name="javafx.runtime.version" value="20+19"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/test/NetBeansProjects/CalculateInterestUI/target/test-classes:/Users/test/.m2/repository/org/openjfx/javafx-controls/20/javafx-controls-20.jar:/Users/test/.m2/repository/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar:/Users/test/.m2/repository/org/openjfx/javafx-base/20/javafx-base-20.jar:/Users/test/.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha.jar:/Users/test/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/test/.m2/repository/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar:/Users/test/.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/test/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/test/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Pacific/Fiji"/>
+    <property name="javafx.version" value="20"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="20"/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="org.apache.maven.surefire.booter.ForkedBooter /Users/test/NetBeansProjects/CalculateInterestUI/target/surefire 2024-09-30T00-27-00_876-jvmRun1 surefire-20240930002701063_1tmp surefire_0-20240930002701063_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/test/NetBeansProjects/CalculateInterestUI/target/test-classes:/Users/test/.m2/repository/org/openjfx/javafx-controls/20/javafx-controls-20.jar:/Users/test/.m2/repository/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar:/Users/test/.m2/repository/org/openjfx/javafx-base/20/javafx-base-20.jar:/Users/test/.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha.jar:/Users/test/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/test/.m2/repository/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar:/Users/test/.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/test/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/test/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/test"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="jdk.module.path" value="/Users/test/NetBeansProjects/CalculateInterestUI/target/classes:/Users/test/.m2/repository/org/openjfx/javafx-controls/20/javafx-controls-20-mac.jar:/Users/test/.m2/repository/org/openjfx/javafx-graphics/20/javafx-graphics-20-mac.jar:/Users/test/.m2/repository/org/openjfx/javafx-base/20/javafx-base-20-mac.jar"/>
+    <property name="java.version.date" value="2023-03-21"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-20.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/test/NetBeansProjects/CalculateInterestUI"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/test/.m2/repository/org/apache/maven/surefire/surefire-booter/3.2.2/surefire-booter-3.2.2.jar:/Users/test/.m2/repository/org/apache/maven/surefire/surefire-api/3.2.2/surefire-api-3.2.2.jar:/Users/test/.m2/repository/org/apache/maven/surefire/surefire-logger-api/3.2.2/surefire-logger-api-3.2.2.jar:/Users/test/.m2/repository/org/apache/maven/surefire/surefire-shared-utils/3.2.2/surefire-shared-utils-3.2.2.jar:/Users/test/.m2/repository/org/apache/maven/surefire/surefire-extensions-spi/3.2.2/surefire-extensions-spi-3.2.2.jar:/Users/test/NetBeansProjects/CalculateInterestUI/target/test-classes:/Users/test/.m2/repository/org/openjfx/javafx-controls/20/javafx-controls-20.jar:/Users/test/.m2/repository/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar:/Users/test/.m2/repository/org/openjfx/javafx-base/20/javafx-base-20.jar:/Users/test/.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha.jar:/Users/test/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/test/.m2/repository/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar:/Users/test/.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/Users/test/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/Users/test/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.2/junit-jupiter-params-5.10.2.jar:/Users/test/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:/Users/test/.m2/repository/org/apache/maven/surefire/surefire-junit-platform/3.2.2/surefire-junit-platform-3.2.2.jar:/Users/test/.m2/repository/org/apache/maven/surefire/common-java5/3.2.2/common-java5-3.2.2.jar:/Users/test/.m2/repository/org/junit/platform/junit-platform-launcher/1.10.2/junit-platform-launcher-1.10.2.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="20+36-2344"/>
+    <property name="user.name" value="test"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="14.4.1"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="skipTests" value="false"/>
+    <property name="maven.ext.class.path" value="/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/maven-nblib/netbeans-eventspy.jar"/>
+    <property name="localRepository" value="/Users/test/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/var/folders/q1/7vl8xmrx69z5m827khmlnmqm0000gp/T/"/>
+    <property name="java.version" value="20"/>
+    <property name="user.dir" value="/Users/test/NetBeansProjects/CalculateInterestUI"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/test/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="20+36-2344"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="64.0"/>
+  </properties>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[1]" classname="com.cs341.a1.calculateinterestui.AppTest" time="7.496">
+    <system-out><![CDATA[loanAmount < $100k Result: 8000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[2]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.158">
+    <system-out><![CDATA[loanAmount < $100k Result: 22750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[3]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.187">
+    <system-out><![CDATA[loanAmount < $100k Result: 35750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[4]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.19">
+    <system-out><![CDATA[loanAmount < $500k Result: 48750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[5]" classname="com.cs341.a1.calculateinterestui.AppTest" time="7.134">
+    <system-out><![CDATA[loanAmount >= $500k Result: 605000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[6]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.582">
+    <system-out><![CDATA[Error Case in: loanAmount < $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[7]" classname="com.cs341.a1.calculateinterestui.AppTest" time="4.868">
+    <system-out><![CDATA[Error Case in: loanAmount >= $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[8]" classname="com.cs341.a1.calculateinterestui.AppTest" time="4.471">
+    <system-out><![CDATA[loanAmount < $100k Result: 12000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[9]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.412">
+    <system-out><![CDATA[loanAmount < $100k Result: 29750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[10]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.844">
+    <system-out><![CDATA[loanAmount < $100k Result: 45500.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[11]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.175">
+    <system-out><![CDATA[loanAmount < $500k Result: 63750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[12]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.868">
+    <system-out><![CDATA[loanAmount >= $500k Result: 770000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[13]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.743">
+    <system-out><![CDATA[Error Case in: loanAmount < $100k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[14]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.457">
+    <system-out><![CDATA[Error Case in: loanAmount < $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanInterestCalculation(String, String, String, String)[15]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.187">
+    <system-out><![CDATA[Error Case in: loanAmount >= $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountFieldEmpty" classname="com.cs341.a1.calculateinterestui.AppTest" time="2.424"/>
+  <testcase name="testLoanAmountNotANumber" classname="com.cs341.a1.calculateinterestui.AppTest" time="2.961"/>
+  <testcase name="testLoanYearNotSelected" classname="com.cs341.a1.calculateinterestui.AppTest" time="2.895"/>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[1]" classname="com.cs341.a1.calculateinterestui.AppTest" time="4.441">
+    <system-out><![CDATA[loanAmount < $100k Result: 8000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[2]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.105">
+    <system-out><![CDATA[loanAmount < $100k Result: 22750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[3]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.846">
+    <system-out><![CDATA[loanAmount < $100k Result: 35750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[4]" classname="com.cs341.a1.calculateinterestui.AppTest" time="4.834">
+    <system-out><![CDATA[loanAmount < $500k Result: 48750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[5]" classname="com.cs341.a1.calculateinterestui.AppTest" time="7.093">
+    <system-out><![CDATA[loanAmount >= $500k Result: 605000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[6]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.503">
+    <system-out><![CDATA[Error Case in: loanAmount < $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[7]" classname="com.cs341.a1.calculateinterestui.AppTest" time="4.884">
+    <system-out><![CDATA[Error Case in: loanAmount >= $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[8]" classname="com.cs341.a1.calculateinterestui.AppTest" time="4.377">
+    <system-out><![CDATA[loanAmount < $100k Result: 12000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[9]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.313">
+    <system-out><![CDATA[loanAmount < $100k Result: 29750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[10]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.097">
+    <system-out><![CDATA[loanAmount < $100k Result: 45500.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[11]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.13">
+    <system-out><![CDATA[loanAmount < $500k Result: 63750.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[12]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.789">
+    <system-out><![CDATA[loanAmount >= $500k Result: 770000.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[13]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.713">
+    <system-out><![CDATA[Error Case in: loanAmount < $100k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[14]" classname="com.cs341.a1.calculateinterestui.AppTest" time="6.477">
+    <system-out><![CDATA[Error Case in: loanAmount < $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountCalculation(String, String, String, String)[15]" classname="com.cs341.a1.calculateinterestui.AppTest" time="5.014">
+    <system-out><![CDATA[Error Case in: loanAmount >= $500k Result: -1.0
+-1.0 -1.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanAmountLessThan5000" classname="com.cs341.a1.calculateinterestui.AppTest" time="2.942"/>
+  <testcase name="testLoanBalanceCalculation(String)[1]" classname="com.cs341.a1.calculateinterestui.AppTest" time="1.848">
+    <system-out><![CDATA[loanAmount < $500k Result: 68250.0
+]]></system-out>
+  </testcase>
+  <testcase name="testLoanTypeNotSelected" classname="com.cs341.a1.calculateinterestui.AppTest" time="1.603"/>
+</testsuite>
