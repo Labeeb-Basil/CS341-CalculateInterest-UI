@@ -109,7 +109,7 @@ public class CalculateInterestUI {
     }
 
     public static String[] computeLoanAmountValue(double loanAmount, int yearLoan, int loanType) {
-        
+
         float returnValue = computeLoanInterest(loanAmount, yearLoan, loanType);
 
         if (checkReturnError(returnValue)) {
@@ -125,38 +125,37 @@ public class CalculateInterestUI {
     // Assuming started on Jan 1st, first payment made on Feb 1st and then 1st of every following month
     // Currently at september, payments made = 56
     // Assuming Loan Type is Home (1)
-    public static String[] computeLoanBalance() {
-        float INITIAL_AMOUNT = 175000f;
-        int ASSUMED_LOAN_TERM = 6; // years
-        LocalDate loanStartDate = LocalDate.of(2020, 1, 1);
+    public static String[] computeLoanBalance(double loanAmount, int yearLoan, int loanType, LocalDate loanStartDate) {
         LocalDate currentDate = LocalDate.now();
 
-        int totalMonths = (int) ChronoUnit.MONTHS.between(loanStartDate, ChronoUnit.YEARS.addTo(loanStartDate, ASSUMED_LOAN_TERM));
+        int totalMonths = (int) ChronoUnit.MONTHS.between(loanStartDate, ChronoUnit.YEARS.addTo(loanStartDate, yearLoan));
         int monthsTillNow = (int) ChronoUnit.MONTHS.between(loanStartDate, currentDate);
 
-        float homeLoanInterest = computeLoanInterest(INITIAL_AMOUNT, ASSUMED_LOAN_TERM, LOAN_TYPE_HOME);
+        float homeLoanInterest = computeLoanInterest(loanAmount, yearLoan, loanType);
 
         if (checkReturnError(homeLoanInterest)) {
             return new String[]{"Error while calculating Loan Balance", "#FF0000"};
         }
 
-        float monthlyPaymentHome = computeMonthlyPayment(INITIAL_AMOUNT, homeLoanInterest, totalMonths);
+        float monthlyPaymentHome = computeMonthlyPayment(loanAmount, homeLoanInterest, totalMonths);
         float homeLoanPaidAmount = monthlyPaymentHome * monthsTillNow;
-        float homeLoanBalance = (INITIAL_AMOUNT + homeLoanInterest) - homeLoanPaidAmount;
+        float homeLoanBalance = (float) ((loanAmount + homeLoanInterest) - homeLoanPaidAmount);
+        
+        String type = loanType == LOAN_TYPE_HOME ? "Home" : "Property";
 
         // Return the formatted loan balance
         return new String[]{
             "Assumed Loan Term: " + totalMonths + " months"
             + "\nAssumed Start Date: " + loanStartDate
             + "\nMonths Paid: " + monthsTillNow + " months"
-            + "\n\nIf Type - Home: "
+            + "\n\nType - " + type
             + "\n\tPaid Amount: $" + homeLoanPaidAmount
             + "\n\tRemaining Balance: $" + roundDecimal(homeLoanBalance, 2), "#66faee"
         };
     }
 
-    private static float computeMonthlyPayment(float principal, float interestAmount, int durationMonths) {
-        return (principal + interestAmount) / durationMonths;
+    private static float computeMonthlyPayment(double principal, float interestAmount, int durationMonths) {
+        return (float) ((principal + interestAmount) / durationMonths);
     }
 
     // Helper method to round float value to required decimal places

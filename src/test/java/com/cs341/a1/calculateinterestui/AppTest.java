@@ -9,7 +9,6 @@ import javafx.scene.input.KeyEvent;
 import org.testfx.util.WaitForAsyncUtils;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.Start;
@@ -28,7 +27,6 @@ public class AppTest extends ApplicationTest {
     public void start(Stage stage) throws Exception {
         new App().start(stage);
 
-        // Set up key listener to terminate the application on spacebar press
         Scene scene = stage.getScene();
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.SPACE) {
@@ -39,17 +37,6 @@ public class AppTest extends ApplicationTest {
         });
 
         stage.show();
-    }
-    
-    @BeforeAll
-    public static void setupSpec() throws Exception {
-        if (Boolean.getBoolean("headless")) {
-            System.setProperty("testfx.robot", "glass");
-            System.setProperty("testfx.headless", "true");
-            System.setProperty("prism.order", "sw");
-            System.setProperty("prism.text", "t2k");
-            System.setProperty("java.awt.headless", "true");
-        }
     }
     
     @BeforeEach
@@ -144,7 +131,7 @@ public class AppTest extends ApplicationTest {
         "Balance: $54055.56"
     })
     public void testLoanBalanceCalculation(String expectedResult) {
-        FxRobot robot = new FxRobot(); // Use a new instance of FxRobot if needed.
+        FxRobot robot = new FxRobot();
 
         robot.clickOn("#loanBalanceButton");
         robot.clickOn("#loanBalanceButton");
@@ -168,6 +155,7 @@ public class AppTest extends ApplicationTest {
         return lookup(".dialog-pane .content").queryLabeled().getText();
     }
 
+    // Next 5 are alert box tests (alert box shown
     @Test
     public void testLoanTypeNotSelected() {
         clickOn("#calculateLoanInterestButton");
@@ -243,10 +231,9 @@ public class AppTest extends ApplicationTest {
             if (year.equals(loanYear)) {
                 robot.press(KeyCode.DOWN).release(KeyCode.DOWN);
 
-                robot.clickOn(year); // Click on the item directly
+                robot.clickOn(year);
 
                 return; 
-
             }
 
             // If the item is not visible, scroll down

@@ -1,5 +1,6 @@
 package com.cs341.a1.calculateinterestui;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -48,6 +49,7 @@ public class App extends Application {
         primaryStage.show();
     }
 
+    // Top Section with Title and operation buttons.
     private HBox createTopSection() {
         HBox topSection = new HBox();
         topSection.getStyleClass().add("hbox-top");
@@ -68,11 +70,11 @@ public class App extends Application {
         return topSection;
     }
 
+    // Center section with input and output boxes
     private VBox createCenterSection() {
         VBox center = new VBox();
         center.getStyleClass().add("center-container");
 
-        // Create the heading
         operationTile = new Label("Select an operation");
         operationTile.getStyleClass().add("operation-tile");
 
@@ -108,6 +110,7 @@ public class App extends Application {
         return center;
     }
 
+    // Top bar operation buttons
     private HBox createToggleButtons() {
         operationToggleGroup = new ToggleGroup();
         HBox toggleButtons = new HBox();
@@ -122,16 +125,17 @@ public class App extends Application {
         calculateLoanInterestButton = new ToggleButton("Calculate Loan Interest");
         calculateLoanInterestButton.setToggleGroup(operationToggleGroup);
         calculateLoanInterestButton.getStyleClass().add("toggle-button");
-        calculateLoanInterestButton.setId("calculateLoanInterestButton"); // Set ID
+        calculateLoanInterestButton.setId("calculateLoanInterestButton");
 
         loanBalanceButton = new ToggleButton("Loan Balance");
         loanBalanceButton.setToggleGroup(operationToggleGroup);
         loanBalanceButton.getStyleClass().add("toggle-button");
-        loanBalanceButton.setId("loanBalanceButton"); // Set ID
+        loanBalanceButton.setId("loanBalanceButton"); 
 
         toggleButtons.getChildren().addAll(calculateLoanAmountButton, calculateLoanInterestButton, loanBalanceButton);
 
-        operationToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+        // disable/enable fields based on selected operation.
+        operationToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> { 
             if (newToggle == null) {
                 operationToggleGroup.selectToggle(oldToggle);
             } else {
@@ -157,7 +161,7 @@ public class App extends Application {
         inputBox.setSpacing(15);
         inputBox.setAlignment(Pos.CENTER);
 
-        // Loan Type Label and ComboBox
+        // Input Fields
         Label loanTypeLabel = new Label("Loan Type:");
         loanTypeLabel.getStyleClass().add("input-label");
         loanTypeField = new ComboBox<>();
@@ -166,12 +170,10 @@ public class App extends Application {
         loanTypeField.setPromptText("Select Loan Type");
         loanTypeField.setId("loanTypeField");
 
-        // Add Loan Type components to VBox
         VBox loanTypeBox = new VBox(loanTypeLabel, loanTypeField);
         loanTypeBox.setAlignment(Pos.CENTER_LEFT);
         inputBox.getChildren().add(loanTypeBox);
 
-        // Loan Amount Label and TextField
         Label loanAmountLabel = new Label("Amount:");
         loanAmountLabel.getStyleClass().add("input-label");
         loanAmountField = new TextField();
@@ -179,12 +181,10 @@ public class App extends Application {
         loanAmountField.setPromptText("Enter Loan Amount");
         loanAmountField.setId("loanAmountField");
 
-        // Add Loan Amount components to VBox
         VBox loanAmountBox = new VBox(loanAmountLabel, loanAmountField);
         loanAmountBox.setAlignment(Pos.CENTER_LEFT);
         inputBox.getChildren().add(loanAmountBox);
 
-        // Loan Year Label and ComboBox
         Label loanYearLabel = new Label("Year:");
         loanYearLabel.getStyleClass().add("input-label");
         loanYearField = new ComboBox<>();
@@ -193,18 +193,20 @@ public class App extends Application {
         loanYearField.setPromptText("Select Loan Year");
         loanYearField.setId("loanYearField");
 
-        // Add Loan Year components to VBox
         VBox loanYearBox = new VBox(loanYearLabel, loanYearField);
         loanYearBox.setAlignment(Pos.CENTER_LEFT);
         inputBox.getChildren().add(loanYearBox);
 
+        // On Submit
         submitButton = new Button("Submit");
         submitButton.getStyleClass().add("toggle-button");
         submitButton.setId("submitButton");
         submitButton.setDisable(true);
         submitButton.setOnAction(event -> {
             if (loanBalanceButton.isSelected()) {
-                String[] result = CalculateInterestUI.computeLoanBalance();
+                LocalDate loanStartDate = LocalDate.of(2020, 1, 1);
+
+                String[] result = CalculateInterestUI.computeLoanBalance(175000.0, 6, 1, loanStartDate); //assumed values from Q1 Test Case 69
                 resultLabel.setText(result[0]);
                 resultLabel.setTextFill(Color.web(result[1]));
                 resultLabel.setId("resultLabel");
@@ -242,12 +244,11 @@ public class App extends Application {
     private VBox createOutputBox() {
         VBox outputBox = new VBox();
         outputBox.setSpacing(5);
-        outputBox.setAlignment(Pos.TOP_LEFT); // Align to top left
+        outputBox.setAlignment(Pos.TOP_LEFT);
 
         Label outputLabel = new Label("Output:");
         outputLabel.getStyleClass().add("heading-output");
 
-        // No need to set Vgrow for outputLabel as it should not grow
         outputBox.getChildren().add(outputLabel);
 
         resultLabel = new Label("Do a calculation");
